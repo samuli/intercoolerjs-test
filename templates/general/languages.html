@@ -1,0 +1,8 @@
+{% if partial %}
+  {% include "general/languages_partial.html" %}
+{% else %}
+  {% extends "index.html" %}
+  {% block content %}
+  {% include "general/languages_partial.html" %}
+  {% endblock content %}
+{% endif %}

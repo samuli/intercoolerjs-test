@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Crete+Round:400italic,400" rel="stylesheet" type="text/css">
+  <link href="/static/styles.css" rel="stylesheet" type="text/css">
+  
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="https://intercoolerjs.org/release/intercooler-1.2.3.js"></script>
+</head>
+
+<body>
+    <form id="global-data" ic-global-include="#global-data">
+        <input type="hidden" name="global-data[foo]" value="123"></input>
+        <input type="hidden" name="global-data[bar]" value="456"></input>
+    </form>
+    
+    <div id="global-spinner" style="display: none; position: fixed; background: cyan; z-index: 1000" ic-action="fadeIn:2s">
+        <i id="indicator" class="fa fa-spinner fa-spin"></i> Ladataan...
+    </div>
+
+    <div class="app" ic-enhance="true" ic-global-indicator="#global-spinner">
+        <div class="navi" ic-include="#general-data" ic-target="#content">
+            <form id="general-data">
+                <input type="hidden" name="section-data[name]" value="general"></input>
+                <input type="hidden" name="section-data[foo]" value="bar"></input>
+            </form>
+            <div class="section">
+                <nav class="nav flex-column" ic-switch-class="active">
+                    <a class="nav-link{% if section == "languages" %} active{% endif %}" href="/general/languages">Kieliversiot</a>
+                    <a class="nav-link{% if section == "facets" %} active{% endif %}" href="/general/facets">Fasetit</a>
+                </nv>
+            </div>
+        </div>
+        <div id="content" class="container">{% block content %}{% endblock %}</div>
+    </div>
+</body>

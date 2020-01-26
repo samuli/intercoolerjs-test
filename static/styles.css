@@ -1,0 +1,12 @@
+.app {
+    display: flex;
+}
+.nav-link.active {
+    font-weight: bold;
+}
+.save-success {
+    display: inline-block;
+}
+#section-spinner {
+    margin-left: 10px;
+}

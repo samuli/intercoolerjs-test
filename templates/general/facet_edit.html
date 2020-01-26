@@ -1,0 +1,16 @@
+<h3>Muokkaa fasettia <i>{{ facet }}</i></h3>
+<form>
+    <div>
+      {% for lan,label in data["label"].items() if lan in languages %}
+        <div class="form-group">
+            <label for="{{ lan }}">{{ lan }}</label>
+            <input class="form-element" type="text" id="{{ lan }}" name="section-data[label][{{ lan }}]" value="{{ label }}"{% if lan not in languages %} disabled="disabled"{% endif %}></input>
+        </div>
+      {% endfor %}
+
+      <input type="hidden" value="{{ facet }}" name="section-data[facet]"></input>
+
+      <button class="btn btn-primary" type="submit" ic-post-to="/general/facets/edit" ic-target="#content" ic-indicator="#section-spinner">Tallenna</button><i id="section-spinner" class="fa fa-spinner fa-spin" style="display:none"></i>
+      <a href="/general/facets" ic-target="#content">Peru</a>
+    </div>
+</form>

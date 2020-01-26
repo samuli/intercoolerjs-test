@@ -1,0 +1,8 @@
+{% if partial %}
+  {% include "general/facets_partial.html" %}
+{% else %}
+  {% extends "index.html" %}
+  {% block content %}
+  {% include "general/facets_partial.html" %}
+  {% endblock content %}
+{% endif %}

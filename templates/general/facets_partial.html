@@ -1,0 +1,20 @@
+<h3>Fasetit</h3>
+<form>
+    <input type="hidden" name="section-general-data[foo]" value="bar"></input>
+    <ul>
+    {% for key,facet in data.items() %}
+        <li>
+            <input type="checkbox" value="{{ key }}" name="section-data[selected][]"{% if facet.enabled %} checked="checked"{% endif %}> {{ facet.label["fi"] }}
+            <a href="/general/facets/edit?facet={{ key }}" ic-target="#content">Muokkaa</a>
+        </li>
+    {% endfor %}
+    </ul>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <button class="btn btn-primary" ic-post-to="/general/facets" ic-target="#content" ic-indicator="#section-spinner">Tallenna</button><i id="section-spinner" class="fa fa-spinner fa-spin" style="display:none"></i>
+    {% if not error and saved %}
+    <div class="alert alert-success save-success" ic-trigger-on="scrolled-into-view" ic-trigger-delay="1s" ic-action="fadeOut:500;remove">Tallennettu</div>
+    {% endif %}
+</form>

@@ -1,0 +1,27 @@
+<h3>Kieliversiot</h3>
+<form>
+    <input type="hidden" name="section-general-data[foo]" value="bar"></input>
+    <div class="form-group">
+    {% for lan,enabled in data.items() %}
+        <div class="form-control"><input type="checkbox" value="{{ lan }}" name="section-data[selected][]"{% if enabled %} checked="checked"{% endif %}> {{ lan }}</div>
+    {% endfor %}
+    </div>
+    <div class="form-group">
+        <p>Oletuskieli</p>
+        <select class="form-control" name="section-data[default]">
+        {% for lan,enabled in data.items() %}
+            <option name="{{ lan }}" value="{{ lan }}"{% if default_lan == lan %} selected{% endif %}>{{ lan }}</option>
+        {% endfor %}
+        </select>
+    </div>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <div>
+        <button class="btn btn-default" type="submit" ic-post-to="/general/languages" ic-target="#content" ic-indicator="#section-spinner">Save</button><i id="section-spinner" class="fa fa-spinner fa-spin" style="display:none"></i>
+        {% if not error and saved %}
+        <div class="alert alert-success save-success" ic-trigger-on="scrolled-into-view" ic-trigger-delay="1s" ic-action="fadeOut:500;remove">Tallennettu</div>
+        {% endif %}
+    </div>
+</form>
